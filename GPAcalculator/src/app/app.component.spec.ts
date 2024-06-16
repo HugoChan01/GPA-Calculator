@@ -14,16 +14,16 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have the 'GPAcalculator' title`, () => {
+  it(`should have the 'gpacalculator' title`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('GPAcalculator');
+    expect(app.title).toEqual('gpacalculator');
   });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, GPAcalculator');
+    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, gpacalculator');
   });
 });

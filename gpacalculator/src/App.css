@@ -8,26 +8,33 @@
     padding: 20px;
     box-sizing: border-box;
 }
-  
-/* Add spacing between child divs */
-#calculator-input > div {
-    margin-bottom: 20px;
-}
 
-#submit-button {
-    margin-top: 20px;
+/* Flexbox for input groups */
+#calculator-input {
     display: flex;
-    justify-content: center; /* Center the button horizontally */
+    flex-direction: column;
+    align-items: center;
 }
 
-#result-container {
-    margin-top: 20px;
+.input-container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%; /* Adjust width as needed */
+    max-width: 600px; /* Optional: Set a max width */
 }
 
-/* Optional: Style the form elements */
+.input-group {
+    display: flex;
+    flex-direction: column;
+    margin-right: 20px; /* Optional: Add some space between the groups */
+}
+
+#grade-input, #credit-input {
+    margin-top: 5px;
+}
+
 input {
     padding: 10px;
-    margin-top: 5px;
     width: 100%;
     box-sizing: border-box;
 }
@@ -39,4 +46,14 @@ button {
 
 #title {
     margin-bottom: 20px;
+}
+
+#submit-button {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center; /* Center the button horizontally */
+}
+
+#result-container {
+    margin-top: 20px;
 }

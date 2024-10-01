@@ -18,37 +18,43 @@ function Layout() {
         </div>
 
         <div id="calculator-input">
-          <div id="grade-input-title">
-            <label>Grade (A=4, B=3, C=2, D=1, F=0):</label>
-          </div>
+            
 
-          <div id="grade-input">
-            <input 
-              type="number" 
-              id="grade" 
-              name="grade" 
-              value={grade} 
-              onChange={(e) => setGrade(e.target.value)} 
-            />
-          </div>
+            <div id="grade">
+                <div id="grade-input-title">
+                    <label>Grade (A=4, B=3, C=2, D=1, F=0):</label>
+                </div>
+                <div id="grade-controller"></div>
+                <div id="grade-input">
+                    <input 
+                        type="number" 
+                        id="grade" 
+                        name="grade" 
+                        value={grade} 
+                        onChange={(e) => setGrade(e.target.value)} 
+                    />
+                </div>
+            </div>
+            
+            <div id="credit">
+                <div id="credit-input-title">
+                    <label>Credit Hours:</label>
+                </div>
+                <div id="credit-controller"></div>
+                <div id="credit-input">
+                    <input 
+                        type="number" 
+                        id="credit" 
+                        name="credit" 
+                        value={credit} 
+                        onChange={(e) => setCredit(e.target.value)} 
+                    />
+                </div>
+            </div>
 
-          <div id="credit-input-title">
-            <label>Credit Hours:</label>
-          </div>
-
-          <div id="credit-input">
-            <input 
-              type="number" 
-              id="credit" 
-              name="credit" 
-              value={credit} 
-              onChange={(e) => setCredit(e.target.value)} 
-            />
-          </div>
-
-          <div id="submit-button">
-            <button type="submit" onClick={calculateGPA}>Calculate</button>
-          </div>
+            <div id="submit-button">
+                    <button type="submit" onClick={calculateGPA}>Calculate</button>
+            </div>
           
         </div>
 

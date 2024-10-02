@@ -1,9 +1,9 @@
 import React from 'react'
+import '/src/App.css';
 import { useState } from "react";
 
+
 function Layout() {
-    const [grade, setGrade] = useState('');
-    const [credit, setCredit] = useState('');
     const [result, setResult] = useState('');
     const calculateGPA = (event) => {
         event.preventDefault(); // Prevent default form submission
@@ -12,57 +12,45 @@ function Layout() {
 
 };
   return (
-    <div className="calculator-container">
-        <div id="title">
-          <h2>GPA Calculator</h2>
-        </div>
 
-        <div id="calculator-input">
+
+    <div id="calculator">
             
+        <table>
+            <tr>
+                <th>Grade</th>
+                <th>Credit</th>
+                <th>Grade Point</th>
+            </tr>
+            <tr>
+                <td>
+                    <select id="grade-point">
+                        <option value="4.0">A</option>
+                        <option value="3.7">A-</option>
+                        <option value="3.3">B+</option>
+                        <option value="3.0">B</option>
+                        <option value="2.7">B-</option>
+                        <option value="2.3">C+</option>
+                        <option value="2.0">C</option>
+                        <option value="0">F</option>
+                    </select>    
+                </td>
+                <td><input id="credit" disabled></input></td>
+                <td><input id="grade-point-value" disabled></input></td>
+            </tr>
 
-            <div id="grade">
-                <div id="grade-input-title">
-                    <label>Grade (A=4, B=3, C=2, D=1, F=0):</label>
-                </div>
-                <div id="grade-controller"></div>
-                <div id="grade-input">
-                    <input 
-                        type="number" 
-                        id="grade" 
-                        name="grade" 
-                        value={grade} 
-                        onChange={(e) => setGrade(e.target.value)} 
-                    />
-                </div>
-            </div>
-            
-            <div id="credit">
-                <div id="credit-input-title">
-                    <label>Credit Hours:</label>
-                </div>
-                <div id="credit-controller"></div>
-                <div id="credit-input">
-                    <input 
-                        type="number" 
-                        id="credit" 
-                        name="credit" 
-                        value={credit} 
-                        onChange={(e) => setCredit(e.target.value)} 
-                    />
-                </div>
-            </div>
+        </table>
 
-            <div id="submit-button">
-                    <button type="submit" onClick={calculateGPA}>Calculate</button>
-            </div>
-          
+        <div id="submit-button">
+            <button type="submit" onClick={calculateGPA}>Calculate</button>
         </div>
 
         <div id="result-container">
           <p id="result">{result}</p>
         </div>
 
-      </div>
+    </div>
+
   );
 }
 

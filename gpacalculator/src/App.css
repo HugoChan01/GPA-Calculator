@@ -1,59 +1,22 @@
-/* Center the container */
-.calculator-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh; /* Full viewport height */
-    padding: 20px;
-    box-sizing: border-box;
+#calculator{
+  width: 100%;
+  margin: 0 auto;
+  padding: 50px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
 }
-
-/* Flexbox for input groups */
-#calculator-input {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.input-container {
-    display: flex;
-    justify-content: space-between;
-    width: 100%; /* Adjust width as needed */
-    max-width: 600px; /* Optional: Set a max width */
-}
-
-.input-group {
-    display: flex;
-    flex-direction: column;
-    margin-right: 20px; /* Optional: Add some space between the groups */
-}
-
-#grade-input, #credit-input {
-    margin-top: 5px;
-}
-
-input {
-    padding: 10px;
+table {
     width: 100%;
-    box-sizing: border-box;
+    border-collapse: collapse;
 }
 
-button {
-    padding: 10px 20px;
-    cursor: pointer;
+th, td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: left;
 }
 
-#title {
-    margin-bottom: 20px;
-}
-
-#submit-button {
-    margin-top: 20px;
-    display: flex;
-    justify-content: center; /* Center the button horizontally */
-}
-
-#result-container {
-    margin-top: 20px;
+th {
+    background-color: #f2f2f2;
 }

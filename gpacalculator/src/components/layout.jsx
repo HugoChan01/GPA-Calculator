@@ -6,7 +6,7 @@ import { useState } from "react";
 function Layout() {
     const [result, setResult] = useState('');
     const [grade, setGrade] = useState('4.0'); 
-    const [credit, setCredit] = useState('3'); 
+    const [credit, setCredit] = useState('5'); 
 
     const calculateGPA = (event) => {
         event.preventDefault(); // Prevent default form submission
@@ -16,7 +16,35 @@ function Layout() {
 
     return (
         <div id="calculator">
-            <table>
+            <table id="school-programme">
+                <thead>
+                    <tr>
+                        <th>School</th>
+                        <th>Programme</th>
+                    </tr>
+                </thead>
+                <tbody>    
+                    <tr>
+                        <td>
+                            <select id="school">
+                                <option value="AS">School of Arts and Social Sciences</option>
+                                <option value="BA">Lee Shau Kee School of Business and Administration</option>
+                                <option value="3">School of Engineering</option>
+                                <option value="4">School of Engineering</option>
+                                <option value="5">School of Engineering</option>
+                            </select>
+                        </td>
+                        <td>
+                            <select id="programme">
+                                <option value="1">Computer Science</option>
+                                <option value="2">Information Technology</option>
+                                <option value="3">Information Systems</option>
+                            </select>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table id="grade-credit-grade-point">
                 <thead>
                     <tr>
                         <th>Grade</th>
@@ -51,6 +79,7 @@ function Layout() {
                                         value="3" 
                                         checked={credit === '3'} 
                                         onChange={(e) => setCredit(e.target.value)}
+                                        disabled
                                     />
                                     3 Credits
                                 </div>

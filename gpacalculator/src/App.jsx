@@ -1,16 +1,13 @@
-import './App.css'
 import HeaderComponent from './components/HeaderComponent'
-import FileUploadComponent from './components/FileUploadComponent'
-import TranscriptReaderComponent from './components/TranscriptReaderComponent'
+import WgpCalculator from './components/calculator/WgpCalculator'
 
 function App() {
   return (
     <>
       <HeaderComponent />
-      <FileUploadComponent />
-      {/* <TranscriptReaderComponent /> */}
+      <WgpCalculator/>
     </>
-  )
+  );
 }
 
-export default App
+export default App;

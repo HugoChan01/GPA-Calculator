@@ -1,16 +1,11 @@
-import React from 'react'
-
 const HeaderComponent = () => {
-  return (
-    <div>
+    return (
         <header>
-            {/* Navigation bar */}
             <nav className='navbar navbar-dark bg-dark'>
-                <a className="navbar-brand">WGPA Calculator</a> 
+                <span className="navbar-brand">WGPA Calculator</span>
             </nav>
         </header>
-    </div>
-  )
-}
+    );
+};
 
-export default HeaderComponent
+export default HeaderComponent;

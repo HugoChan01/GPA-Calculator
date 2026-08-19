@@ -1,15 +1,13 @@
-import './App.css'
 import HeaderComponent from './components/HeaderComponent'
-import Layout from './components/layout';
+import WgpCalculator from './components/calculator/WgpCalculator'
 
 function App() {
   return (
     <>
       <HeaderComponent />
-      <Layout/>
+      <WgpCalculator/>
     </>
   );
-
 }
 
 export default App;

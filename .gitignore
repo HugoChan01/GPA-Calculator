@@ -2,78 +2,40 @@
 # Dependencies
 node_modules/
 
-# Build outputs
-dist/
+# Build artifacts
 build/
+dist/
 *.js.map
 
-# Environment variables
+# Environment
 .env
 .env.local
 *.env.*
 
+# Editors
+.vscode/
+.idea/
+*.swp
+*.swo
+
 # Logs
 *.log
 
-# Temporary files
+# Temp files
 *.tmp
-*.swp
 
-# IDE specific
-.vscode/
-.idea/
-
-# Python
+# Python (if any Python files exist in project)
 __pycache__/
 *.pyc
 *.pyo
 *.pyd
 
-# Coverage reports
+# Coverage
 coverage/
 htmlcov/
 .coverage
 
-# Distribution / packaging
-.Python
-*.egg-info/
-.eggs/
-.installed.cfg
-*.egg
-
-# MyPy
-.mypy_cache/
-.dmypy.json
-dmypy.json
-
-# Pytest
-.pytest_cache/
-
-# OS generated files
+# OS
 .DS_Store
 Thumbs.db
-
-# Compression
-*.zip
-*.gz
-*.tar
-*.tgz
-*.bz2
-*.xz
-*.7z
-*.rar
-*.zst
-*.lz4
-*.lzh
-*.cab
-*.arj
-*.rpm
-*.deb
-*.Z
-*.lz
-*.lzo
-*.tar.gz
-*.tar.bz2
-*.tar.xz
-*.tar.zst
 ```

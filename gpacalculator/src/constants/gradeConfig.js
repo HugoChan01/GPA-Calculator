@@ -1,5 +1,6 @@
 /**
  * Grade to Grade Point mapping
+ * Based on official course assessment standards (Section 8.2)
  */
 export const GRADE_POINTS = {
     'A': 4.0,
@@ -9,8 +10,17 @@ export const GRADE_POINTS = {
     'B-': 2.7,
     'C+': 2.3,
     'C': 2.0,
-    'F': 0.0
+    'Fail': 0.0,
+    // Non-grade point statuses (for tracking only, excluded from GPA calculation)
+    'Fail-resit': null,
+    'Pass': null,
+    'W': null
 };
+
+/**
+ * Grades that should be excluded from GPA calculation
+ */
+export const EXCLUDED_GRADES = ['Fail-resit', 'Pass', 'W'];
 
 /**
  * Honours classification thresholds

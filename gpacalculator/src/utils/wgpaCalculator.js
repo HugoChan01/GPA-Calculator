@@ -1,4 +1,4 @@
-import { GRADE_POINTS, HONOURS_CLASSIFICATION } from '../constants/gradeConfig';
+import { GRADE_POINTS, HONOURS_CLASSIFICATION, EXCLUDED_GRADES } from '../constants/gradeConfig';
 
 /**
  * Select best courses for a group based on grade points
@@ -10,6 +10,7 @@ import { GRADE_POINTS, HONOURS_CLASSIFICATION } from '../constants/gradeConfig';
 export const selectBestCourses = (courses, requiredCredits, excludedCourseIds = new Set()) => {
     const sortedCourses = [...courses]
         .filter(c => !excludedCourseIds.has(c.id))
+        .filter(c => GRADE_POINTS[c.grade] !== null && !EXCLUDED_GRADES.includes(c.grade))
         .sort((a, b) => GRADE_POINTS[b.grade] - GRADE_POINTS[a.grade]);
 
     const selectedCourses = [];
@@ -72,21 +73,38 @@ export const calculateWGPA = (courses, programmeType, groupAWeight, groupBWeight
         };
     }
 
-    // Calculate weighted grade points
-    const sumGP_GroupA = groupACourses.reduce((sum, c) => sum + (GRADE_POINTS[c.grade] * c.credits), 0);
-    const sumGP_GroupB = groupBCourses.reduce((sum, c) => sum + (GRADE_POINTS[c.grade] * c.credits), 0);
+    // Calculate weighted grade points (only for courses with valid grade points)
+    const sumGP_GroupA = groupACourses.reduce((sum, c) => {
+        const gradePoint = GRADE_POINTS[c.grade];
+        return sum + (gradePoint !== null ? gradePoint * c.credits : 0);
+    }, 0);
+    
+    const sumGP_GroupB = groupBCourses.reduce((sum, c) => {
+        const gradePoint = GRADE_POINTS[c.grade];
+        return sum + (gradePoint !== null ? gradePoint * c.credits : 0);
+    }, 0);
 
     // Apply weights
     const weightedSumGP = (sumGP_GroupA * groupAWeight) + (sumGP_GroupB * groupBWeight);
     const weightedSumCredits = (actualGroupACredits * groupAWeight) + (actualGroupBCredits * groupBWeight);
 
-    // Calculate WGPA
-    const wgpa = weightedSumCredits > 0 ? weightedSumGP / weightedSumCredits : 0;
+    // Calculate WGPA with proper error handling for division by zero
+    let wgpa = 0;
+    if (weightedSumCredits > 0) {
+        wgpa = weightedSumGP / weightedSumCredits;
+    } else {
+        return {
+            error: 'Unable to calculate WGPA: No valid credits found.',
+            wgpa: null,
+            classification: null
+        };
+    }
 
-    // Determine honours classification
+    // Determine honours classification with proper floating-point comparison
     let classification = 'No Honours';
+    const wgpaRounded = Math.round(wgpa * 100) / 100; // Round to 2 decimal places for comparison
     for (const cls of HONOURS_CLASSIFICATION) {
-        if (wgpa >= cls.min && wgpa <= cls.max) {
+        if (wgpaRounded >= cls.min && wgpaRounded <= cls.max) {
             classification = cls.name;
             break;
         }
@@ -94,7 +112,7 @@ export const calculateWGPA = (courses, programmeType, groupAWeight, groupBWeight
 
     return {
         error: null,
-        wgpa: wgpa.toFixed(2),
+        wgpa: wgpaRounded.toFixed(2),
         classification,
         groupACourses,
         groupBCourses,

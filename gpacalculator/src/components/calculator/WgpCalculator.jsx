@@ -1,7 +1,13 @@
-import React from 'react';
 import { useWgpCalculator } from '../../hooks/useWgpCalculator';
-import { GRADE_POINTS, CREDIT_OPTIONS, COURSE_LEVELS, PROGRAMME_CONFIG } from '../../constants/gradeConfig';
+import { GRADE_POINTS, CREDIT_OPTIONS, COURSE_LEVELS, PROGRAMME_CONFIG, EXCLUDED_GRADES } from '../../constants/gradeConfig';
 import './WgpCalculator.css';
+
+// Helper function to escape HTML and prevent XSS
+const escapeHtml = (text) => {
+    const div = document.createElement('div');
+    div.textContent = text;
+    return div.innerHTML;
+};
 
 const WgpCalculator = () => {
     const {
@@ -102,9 +108,14 @@ const WgpCalculator = () => {
                                     onChange={(e) => updateCourse(course.id, 'grade', e.target.value)}
                                     className="form-select"
                                 >
-                                    {Object.entries(GRADE_POINTS).map(([grade, point]) => (
-                                        <option key={grade} value={grade}>{grade} ({point})</option>
-                                    ))}
+                                    {Object.entries(GRADE_POINTS).map(([grade, point]) => {
+                                        const displayText = EXCLUDED_GRADES.includes(grade) 
+                                            ? `${grade} (No GP)` 
+                                            : `${grade} (${point})`;
+                                        return (
+                                            <option key={grade} value={grade}>{displayText}</option>
+                                        );
+                                    })}
                                 </select>
                             </td>
                             <td>
@@ -168,7 +179,7 @@ const WgpCalculator = () => {
                                 <ul>
                                     {result.groupACourses.map(c => (
                                         <li key={c.id}>
-                                            {c.courseCode || 'Unnamed'} - Grade: {c.grade}, Credits: {c.credits}
+                                            {c.courseCode ? escapeHtml(c.courseCode) : 'Unnamed'} - Grade: {c.grade}, Credits: {c.credits}
                                         </li>
                                     ))}
                                 </ul>
@@ -180,7 +191,7 @@ const WgpCalculator = () => {
                                 <ul>
                                     {result.groupBCourses.map(c => (
                                         <li key={c.id}>
-                                            {c.courseCode || 'Unnamed'} - Grade: {c.grade}, Credits: {c.credits} ({c.level})
+                                            {c.courseCode ? escapeHtml(c.courseCode) : 'Unnamed'} - Grade: {c.grade}, Credits: {c.credits} ({c.level})
                                         </li>
                                     ))}
                                 </ul>
